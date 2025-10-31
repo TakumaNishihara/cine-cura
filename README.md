@@ -28,5 +28,5 @@
 - IDE：Visual Studio Code（VSCode）
 ​
 ## 使用素材
-いらすとや（https://www.irasutoya.com/）
-Pixels（https://www.pexels.com/ja-jp/）
+- いらすとや（https://www.irasutoya.com/）
+- Pixels（https://www.pexels.com/ja-jp/）
