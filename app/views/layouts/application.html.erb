@@ -13,7 +13,19 @@
 
   <body>
     <%= render 'layouts/header' %>
-    <%= yield %>
+
+    <main class="container py-4">
+      
+      <% if notice.present? %>
+        <div class="alert alert-success" role="alert"><%= notice %></div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="alert alert-danger" role="alert"><%= alert %></div>
+      <% end %>
+      
+      <%= yield %>
+    </main>
+
     <%= render 'layouts/footer' %>
   </body>
 </html>
