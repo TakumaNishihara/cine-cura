@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :posts
     resources :users
+      get   "unsubscribe"        => "users#unsubscribe"
+      patch "withdraw"           => "users#withdraw"
     get :mypage, to: 'users#mypage'
+  
   end
 
 # deviseユーザー用
