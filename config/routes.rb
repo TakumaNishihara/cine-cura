@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
-# ユーザー用
+
+  root "homes#top"
+  get "about" => "homes#about"
+  
+  scope module: :public do
+    resources :posts
+  end
+
+# deviseユーザー用
 devise_for :users, controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
 
-# 管理者用
+# devise管理者用
 devise_for :admin, controllers: {
   sessions: "admin/sessions"
 }
-
-  root "homes#top"
-  get "about" => "homes#about"
 end
