@@ -11,8 +11,4 @@
 <p><%= @post.timeline %></p>
 
 <h2>画像</h2>
-<% if @post.image.attached? %>
-  <%= image_tag @post.image %>
-<%else %>
-  <%= image_tag 'no_image.jpg' %>
-<% end %>
+<%= image_tag @post.get_image %>
