@@ -5,6 +5,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_one_attached :profile_image
+  
+  # 退会済みユーザーはログイン不可にする
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
+
+  # ログイン失敗時のメッセージ
+  def inactive_message
+    "このユーザーアカウントは退会済みです。再度ご登録いただくか、管理者にお問い合わせください。"
+  end
 
   def get_profile_image(width, height)
     unless profile_image.attached?
