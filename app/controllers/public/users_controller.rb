@@ -12,8 +12,11 @@ class Public::UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to mypage_path
+    if @user.update(user_params)
+      redirect_to mypage_path, notice: '編集が完了しました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
 
@@ -40,6 +43,6 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :email, :profile_image)
   end
 end

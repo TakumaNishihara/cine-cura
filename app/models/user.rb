@@ -6,6 +6,9 @@ class User < ApplicationRecord
   
   has_one_attached :profile_image
   
+  # 名前は必須
+  validates :name, presence: true
+
   # 退会済みユーザーはログイン不可にする
   def active_for_authentication?
     super && (self.is_active == true)
