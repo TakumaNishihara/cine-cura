@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  # deviseユーザー用
+  devise_for :users, controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
   root "homes#top"
   get "about" => "homes#about"
@@ -12,14 +17,8 @@ Rails.application.routes.draw do
   
   end
 
-# deviseユーザー用
-devise_for :users, controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
-
-# devise管理者用
-devise_for :admin, controllers: {
-  sessions: "admin/sessions"
-}
-end
+  # devise管理者用
+  devise_for :admin, controllers: {
+    sessions: "admin/sessions"
+  }
+  end

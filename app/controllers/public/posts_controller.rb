@@ -1,5 +1,8 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_user!
+  
+  # 投稿は未ログインでも見れるように
+  before_action :authenticate_user!, except: [:index, :show]
+
   def new
     @post = Post.new
   end
