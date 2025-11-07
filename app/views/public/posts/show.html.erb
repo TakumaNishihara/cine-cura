@@ -11,7 +11,7 @@
 <p><%= @post.timeline %></p>
 
 <h2>画像</h2>
-<%= image_tag @post.get_image %>
+<%= image_tag @post.get_image(100, 100) %>
 <%= link_to "編集", edit_post_path(@post.id) %>
 
 <% if @post.user == current_user %>
