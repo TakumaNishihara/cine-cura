@@ -14,8 +14,13 @@ Rails.application.routes.draw do
     resources :users
       get   "unsubscribe"        => "users#unsubscribe"
       patch "withdraw"           => "users#withdraw"
-    get :mypage, to: 'users#mypage'
-  
+    get :mypage, to: 'users#mypage'  
+  end
+
+  scope module: :admin do
+    resources :posts
+    resources :users
+      get "dashbords"            => "admin#dashbords"
   end
 
   # devise管理者用
