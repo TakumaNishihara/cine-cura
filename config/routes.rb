@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   scope module: :admin do
     resources :posts
     resources :users
-      get "dashbords"            => "admin#dashbords"
+    resources :dashboards, only: [:index]
   end
 
   # devise管理者用
