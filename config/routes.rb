@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-
+  
+  # ユーザー用
   root "homes#top"
   get "about" => "homes#about"
   get '/search', to: 'searches#search'
@@ -17,14 +18,16 @@ Rails.application.routes.draw do
     get :mypage, to: 'users#mypage'  
   end
 
+  # devise管理者用
+  devise_for :admin, controllers: {
+    sessions: "admin/sessions"
+  }
+
+  # 管理者用
   scope module: :admin do
     resources :posts
     resources :users
     resources :dashboards, only: [:index]
   end
-
-  # devise管理者用
-  devise_for :admin, controllers: {
-    sessions: "admin/sessions"
-  }
-  end
+  
+end
