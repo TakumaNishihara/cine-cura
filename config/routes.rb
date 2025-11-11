@@ -7,14 +7,20 @@ Rails.application.routes.draw do
 
   root "homes#top"
   get "about" => "homes#about"
+  get '/search', to: 'searches#search'
   
   scope module: :public do
     resources :posts
     resources :users
       get   "unsubscribe"        => "users#unsubscribe"
       patch "withdraw"           => "users#withdraw"
-    get :mypage, to: 'users#mypage'
-  
+    get :mypage, to: 'users#mypage'  
+  end
+
+  scope module: :admin do
+    resources :posts
+    resources :users
+    resources :dashboards, only: [:index]
   end
 
   # devise管理者用
