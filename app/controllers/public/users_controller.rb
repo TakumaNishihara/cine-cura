@@ -34,7 +34,7 @@ class Public::UsersController < ApplicationController
 
     if @user.update(is_active: false) 
       reset_session
-      redirect_to root_path, notice: "退会手続きが完了いたしました。ご利用ありがとうございました。"
+      redirect_to new_user_registration_path, notice: "退会手続きが完了いたしました。ご利用ありがとうございました。"
     else
       redirect_to mypage_path, alert: "退会処理中にエラーが発生しました。"
     end
