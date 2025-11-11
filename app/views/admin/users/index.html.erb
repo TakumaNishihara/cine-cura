@@ -14,7 +14,7 @@
           <%= image_tag user.get_profile_image(70, 70) %>
         </td>
         <td>
-          <%= link_to user.name, user_path(user.id) %>
+          <%= link_to user.name, admin_user_path(user.id) %>
         </td>
         <td>
         <% if user.is_active %>
