@@ -4,7 +4,7 @@
 
       <%#--- 管理者ログイン状態のナビゲーションバー ---%>
       <% if admin_signed_in? %>
-        <%= link_to "シネマキュレーター", root_path, class: "navbar-brand" %>
+        <%= link_to "シネマキュレーター", dashboards_path, class: "navbar-brand" %>
 
         <span class="navbar-text me-auto ms-5">
           管理者モードです
