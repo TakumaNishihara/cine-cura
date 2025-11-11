@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   }
 
   # 管理者用
-  scope module: :admin do
+  namespace :admin do
     resources :posts
     resources :users
     resources :dashboards, only: [:index]
