@@ -11,6 +11,12 @@
   <label for="inputImage">プロフィール画像</label>
   <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
 
+  <label for="inputIsActive">会員ステータス</label>
+  <%= f.select :is_active, 
+               [["有効", true], ["無効", false]], 
+               { include_blank: false }, 
+               { id: "inputIsActive" } %>
+
   <%= f.submit "変更を保存" %>
 
 <% end %>
