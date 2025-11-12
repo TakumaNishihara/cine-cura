@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#search'
   
   scope module: :public do
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:create, :destroy]
+    end
     resources :users
       get   "unsubscribe"        => "users#unsubscribe"
       patch "withdraw"           => "users#withdraw"
