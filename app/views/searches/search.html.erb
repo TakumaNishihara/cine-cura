@@ -3,11 +3,11 @@
   <%= render 'public/users/index', users: @records %>
 
   <% elsif @model == 'post_title' %>
-	<h3>投稿(タイトル) 検索結果： 「<%= @content %>」</h3>
+    <h3>投稿(タイトル) 検索結果： 「<%= @content %>」</h3>
   <%= render 'public/posts/index', posts: @records %>
 
   <% elsif @model == 'post_tag' %>
-	<h3>投稿（タグ）検索結果： 「<%= @content %>」</h3>
+    <h3>投稿（タグ）検索結果： 「<%= @content %>」</h3>
   <%= render 'public/posts/index', posts: @records %>
 
   <% end %>

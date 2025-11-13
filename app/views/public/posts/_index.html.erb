@@ -3,8 +3,8 @@
     <tr>
       <th></th>
       <th>タイトル</th>
-      <th><%= link_to "公開年", posts_path(sort: 'release', direction: (params[:direction] == 'asc' ? 'desc' : 'asc')) %></th>
-      <th><%= link_to "時系列", posts_path(sort: 'timeline', direction: (params[:direction] == 'asc' ? 'desc' : 'asc')) %>  </th>
+      <th>公開年</th>
+      <th>時系列</th>
       <th>タグ</th>
       <th colspan="3"></th>
     </tr>
@@ -18,10 +18,10 @@
         <td><%= post.release %></td>
         <td><%= post.timeline %></td>
         <td>
-          <% if post.tag.present? %>
-            <%= link_to post.tag, search_path(model: 'post_tag', method: 'partial', content: post.tag) %>
-          <% end %>
-        </td>
+        <% if post.tag.present? %>
+          <%= link_to post.tag, search_path(model: 'post_tag', method: 'partial', content: post.tag) %>
+        <% end %>
+      </td>
       </tr>
     <% end %>
   </tbody>
