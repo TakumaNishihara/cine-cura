@@ -4,8 +4,12 @@
     <tr>
       <th>画像</th>
       <th>タイトル</th>
-      <th>公開年</th>
-      <th>時系列</th>
+      <th>
+        <%= link_to "公開年", posts_path(sort: 'release', direction: (params[:direction] == 'asc' ? 'desc' : 'asc')) %>
+      </th>
+      <th>
+        <%= link_to "時系列", posts_path(sort: 'timeline', direction: (params[:direction] == 'asc' ? 'desc' : 'asc')) %>     
+      </th>
       <th>タグ</th>
     </tr>
   </thead>

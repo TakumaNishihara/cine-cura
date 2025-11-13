@@ -8,7 +8,13 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    sort_column = params[:sort]
+    sort_direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+    if %w[release timeline].include?(sort_column)
+      @posts = Post.order("#{sort_column} #{sort_direction}")
+    else
+      @posts = Post.all.order(created_at: :desc)
+    end
   end
 
   def show
