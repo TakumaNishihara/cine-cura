@@ -28,6 +28,8 @@
             ようこそ <%= current_user.name %> さん
         </span>
 
+        <%= render 'searches/form' %>
+
         <ul class="navbar-nav d-flex flex-row">
           <li class="nav-item me-3">
             <%= link_to "投稿フォーム", new_post_path, class: "nav-link" %>
