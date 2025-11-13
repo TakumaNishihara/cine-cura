@@ -1,22 +1,26 @@
-<h2>タイトル</h2>
+<h2>投稿詳細</h2>
+
+<h4>タイトル</h4>
 <p><%= @post.title %></p>
 
-<h2>本文</h2>
+<h4>本文</h4>
 <p><%= @post.body %></p>
 
-<h2>公開年</h2>
+<h4>公開年</h4>
 <p><%= @post.release %></p>
 
-<h2>シリーズ順番</h2>
+<h4>シリーズ順番</h4>
 <p><%= @post.timeline %></p>
 
-<h2>画像</h2>
+<h4>画像</h4>
 <%= image_tag @post.get_image(100, 100) %>
 
 <% if @post.user == current_user %>
   <%= link_to "編集", edit_post_path(@post.id) %>
   <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" } %>
 <% end %>
+
+<h4>コメント一覧</h4>
 
 <%= render "public/comments/index", post: @post %>
 <%= render "public/comments/form", post: @post, comment: @comment %>
