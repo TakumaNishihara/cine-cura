@@ -2,9 +2,16 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      post: 投稿
     attributes:
       user:
         name: 名前
         email: メールアドレス
         password: パスワード
-        passeowd_confirmation: パスワード（確認用）
+        password_confirmation: パスワード（確認用）
+      post:
+        title: タイトル
+        body: 本文
+        release: 公開年
+        timeline: 時系列
+        tag: タグ
