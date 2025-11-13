@@ -33,7 +33,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(post.id), notice: '編集が完了しました'
+      redirect_to post_path @post, notice: '編集が完了しました'
     else
       render :edit, status: :unprocessable_entity
     end
