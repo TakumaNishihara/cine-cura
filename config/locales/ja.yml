@@ -3,12 +3,19 @@ ja:
     models:
       user: ユーザー
       post: 投稿
+      admin: 管理者
     attributes:
       user:
         name: 名前
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認用）
+      admin:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+        remember_me: ログインを記憶する
       post:
         title: タイトル
         body: 本文
