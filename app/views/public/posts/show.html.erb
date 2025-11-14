@@ -15,7 +15,16 @@
 <h4>画像</h4>
 <%= image_tag @post.get_image(100, 100) %>
 
-<% if @post.user == current_user %>
+<h2>投稿者</h2>
+<div>
+  <%= link_to user_path(@post.user) do %>
+    <%= image_tag @post.user.get_profile_image(50, 50), class: 'rounded-circle' %><br>
+    <%# ユーザー名 %>
+    <%= @post.user.name %>
+  <% end %>
+</div>
+
+<% if @post.user == current_user || admin_signed_in? %>
   <%= link_to "編集", edit_post_path(@post.id), class: 'btn btn-secondary' %>
   <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger' %>
 <% end %>
