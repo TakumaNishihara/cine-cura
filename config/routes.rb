@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :posts do
       resources :comments, only: [:create, :destroy]
+      resources :favorites, only: [:create, :destroy]
     end
     resources :users
       get   "unsubscribe"        => "users#unsubscribe"

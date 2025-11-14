@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   validates :title, :body, :release, :timeline, presence: true
 
   validates :release,  numericality: {
@@ -13,6 +14,10 @@ class Post < ApplicationRecord
     only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 99,
     allow_nil: true, message: 'は1〜99の数字で入力してください'
   }
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 
   def get_image(width, height)
     unless image.attached?
