@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :image
+  has_many :comments, dependent: :destroy
   validates :title, :body, :release, :timeline, presence: true
 
   validates :release,  numericality: {
@@ -21,8 +22,8 @@ class Post < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
-  # 検索機能
-  def self.search_for(content, method)
+  # タイトル検索
+  def self.search_for_title(content, method)
     if method == 'perfect'
       Post.where(title: content)
     elsif method == 'forward'
@@ -31,6 +32,19 @@ class Post < ApplicationRecord
       Post.where('title LIKE ?', '%'+content)
     else
       Post.where('title LIKE ?', '%'+content+'%')
+    end
+  end
+
+  # タグ検索
+  def self.search_for_tag(content, method)
+    if method == 'perfect'
+      Post.where(tag: content)
+    elsif method == 'forward'
+      Post.where('tag LIKE ?', content+'%')
+    elsif method == 'backward'
+      Post.where('tag LIKE ?', '%'+content)
+    else
+      Post.where('tag LIKE ?', '%'+content+'%')
     end
   end
   
