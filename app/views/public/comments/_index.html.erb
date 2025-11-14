@@ -11,7 +11,7 @@
         </td>
         <td><%= comment.body %></td>
         <td>
-          <% if comment.user == current_user %>
+          <% if comment.user == current_user || admin_signed_in? %>
             <%= link_to "コメント削除", post_comment_path(post, comment), method: :delete, class: "btn btn-danger pull-right" %>
           <% end %>
         </td>
