@@ -29,8 +29,8 @@ class User < ApplicationRecord
   #   profile_image.variant(resize_to_limit: [width, height]).processed
   # end
 
-  def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_pro_image.jpg'
+  def get_profile_image(width, height)
+    (profile_image.attached?) ? profile_image.variant(resize_to_limit: [width, height]) : 'no_pro_image.jpg'
   end
 
   # 検索機能
