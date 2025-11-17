@@ -13,14 +13,16 @@
           <th>本文</th>
           <td><%= @post.body %></td>
         </tr>
+        <tr>
+          <th>公開年</th>
+          <td><%= @post.release %></td>
+        </tr>
+        <tr>
+          <th>シリーズ順番</th>
+          <td><%= @post.timeline %></td>
+        </tr>
       </tbody>
     </table>
-
-    <h4>公開年</h4>
-    <p><%= @post.release %></p>
-
-    <h4>シリーズ順番</h4>
-    <p><%= @post.timeline %></p>
 
     <h4>画像</h4>
     <%= image_tag @post.get_image(100, 100) %>
