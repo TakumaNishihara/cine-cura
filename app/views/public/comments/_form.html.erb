@@ -1,4 +1,8 @@
-<%= form_with(model:[post, comment], local: true) do |f| %>
-  <%= f.text_area :body, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
-  <%= f.submit "送信" %>
+<%= form_with(model:[post, comment], local: true, class: "mt-5") do |f| %>
+  <%= f.text_area :body, rows:'5',placeholder: "コメントをここに", class: "form-control" %>
+
+  <div class="d-flex justify-content-end">
+    <div class="m-3">200文字まで</div>
+    <%= f.submit "送信", class: "btn btn-primary m-3 px-4" %>
+  </div>
 <% end %>
