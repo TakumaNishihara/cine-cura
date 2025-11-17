@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  #いいねしたPost一覧を呼び出す場合は以下throughを使う
+  #has_many :favorite_posts, through: :favorites, source: :post
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -42,4 +44,12 @@ class User < ApplicationRecord
     end
   end
 
+  def favorite(post)
+    self.favorites.find_or_create_by(post: post)
+  end
+
+  def unfavorite(post)
+    favorite = self.favorites.find_by(post_id: post.id)
+    favorite.destroy if favorite
+  end
 end

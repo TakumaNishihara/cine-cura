@@ -24,7 +24,11 @@
           <% end %>
         </td>
         <td><%= post.comments.count %></td>
-        <td><%= render "public/favorites/btn", post: post %></td>
+        <td>
+          <div id="post_<%= post.id %>">
+            <%= render "public/favorites/btn", post: post %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>
