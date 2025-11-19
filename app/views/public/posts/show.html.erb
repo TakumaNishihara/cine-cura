@@ -33,10 +33,12 @@
       </tbody>
     </table>
 
+  <div class="d-flex justify-content-end">
     <% if @post.user == current_user || admin_signed_in? %>
-      <%= link_to "編集", edit_post_path(@post.id), class: 'btn btn-secondary' %>
-      <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger' %>
+      <%= link_to "編集", edit_post_path(@post.id), class: "btn btn-secondary m-1 px-4" %>
+      <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger m-1 px-4" %>
     <% end %>
+  </div>
 
     <div class="d-none d-lg-block">
       <%= render "public/comments/form", post: @post, comment: @comment %>
