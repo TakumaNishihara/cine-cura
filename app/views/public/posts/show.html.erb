@@ -6,7 +6,7 @@
     <table class="table mt-4">
       <tbody>
         <tr>
-          <th width="20%">タイトル</th>
+          <th width="23%">タイトル</th>
           <td><%= @post.title %></td>
         </tr>
         <tr>
@@ -21,17 +21,17 @@
           <th>シリーズ順番</th>
           <td><%= @post.timeline %></td>
         </tr>
+        <tr>
+          <th class="align-middle">投稿者</th>
+          <td>
+            <%= link_to( admin_signed_in? ? edit_admin_user_path(@post.user) : user_path(@post.user) ) do %>
+              <%= image_tag @post.user.get_profile_image(50, 50), class: 'rounded-circle' %>
+              <%= @post.user.name %>
+            <% end %>
+          </td>
+        </tr>
       </tbody>
     </table>
-
-
-    <h2>投稿者</h2>
-    <div>
-      <%= link_to( admin_signed_in? ? edit_admin_user_path(@post.user) : user_path(@post.user) ) do %>
-        <%= image_tag @post.user.get_profile_image(40, 40), class: 'rounded-circle' %><br>
-        <%= @post.user.name %>
-      <% end %>
-    </div>
 
     <% if @post.user == current_user || admin_signed_in? %>
       <%= link_to "編集", edit_post_path(@post.id), class: 'btn btn-secondary' %>
