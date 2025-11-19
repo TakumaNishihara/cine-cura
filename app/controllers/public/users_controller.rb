@@ -3,12 +3,17 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:id])
+    @posts = @user.posts
+  end
+  
+  def mypage
+    @user = current_user
+    @posts = @user.posts.order(created_at: :desc).page(params[:page])
   end
 
   def edit
     @user = User.find(params[:id])
-  end
+  end  
   
   def update
     @user = User.find(params[:id])
@@ -16,15 +21,9 @@ class Public::UsersController < ApplicationController
       redirect_to mypage_path, notice: '編集が完了しました'
     else
       render :edit, status: :unprocessable_entity
-    end
-  end
-
-
-  def mypage
-    @user = current_user
-    @posts = @user.posts.order(created_at: :desc).page(params[:page])
-  end
-
+    end  
+  end  
+  
   def unsubscribe
     @user = current_user
   end
