@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_11_14_070837) do
+ActiveRecord::Schema.define(version: 2025_11_20_042137) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2025_11_14_070837) do
     t.string "tag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "rate"
     t.index ["release"], name: "index_posts_on_release"
     t.index ["tag"], name: "index_posts_on_tag"
     t.index ["timeline"], name: "index_posts_on_timeline"

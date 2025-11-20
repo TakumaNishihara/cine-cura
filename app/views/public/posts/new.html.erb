@@ -37,6 +37,28 @@
         <%= f.file_field :image, accept: "image/*" %>
       </div>
 
+      <div class="mb-3" id="star">
+        <%= f.label :rate, "評価" %>
+        <%= f.hidden_field :rate, id: :review_star, class: "form-control" %>
+        <div id="post_raty"></div>
+      </div>
+
+      <script>
+        $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#post_raty');
+          if (elem == null) return;
+    
+          elem.innerHTML = ""
+          let opt = {  
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'post[rate]',
+          };
+          raty(elem, opt);
+        });
+      </script>
+
       <div class="d-flex justify-content-end">
         <%= f.submit "投稿", class: "btn btn-primary m-1 px-4" %>
       </div>
