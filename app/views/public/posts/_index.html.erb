@@ -9,6 +9,7 @@
       <th>コメント数</th>
       <th>いいね</th>
       <th>投稿者</th>
+      <th>評価</th>
     </tr>
   </thead>
   <tbody>
@@ -31,7 +32,31 @@
           </div>
         </td>
         <td><%= link_to post.user.name,post.user, class: "user_#{post.user.id}" %></td>
+        <td>
+          <div id="raty_<%= post.id %>"></div>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    <% posts.each do |post| %>
+      (function() {
+        var elem = document.querySelector('#raty_<%= post.id %>');
+        if (!elem) return;
+
+        elem.innerHTML = "";
+        var opt = {
+          starOn: "<%= asset_path('star-on.png') %>",
+          starOff: "<%= asset_path('star-off.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          score: <%= post.rate.present? ? post.rate : 'undefined' %>,
+          readOnly: true
+        };
+        raty(elem, opt);
+      })();
+    <% end %>
+  });
+</script>
