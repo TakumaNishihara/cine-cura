@@ -1,25 +1,68 @@
-<h1>新規投稿</h1>
+<div class="row mt-5">
+  <div class="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+    <h4 class="text-center">
+      <span class="px-3 font-weight-bold" style="background-color: #e8e8e8;">新規投稿</span>
+    </h4>
 
-<%= form_with model: @post do |f| %>
-  <%= render "public/shared/error_messages", resource: @post %>
+    <%= form_with model: @post do |f| %>
+      <%= render "public/shared/error_messages", resource: @post %>
 
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
+      <div class="mb-3">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
 
-  <h4>本文</h4>
-  <%= f.text_area :body %>
+      <div class="mb-3">
+        <%= f.label :body, "本文" %>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
 
-  <h4>公開年</h4>
-  <%= f.text_area :release %>
+      <div class="mb-3">
+        <%= f.label :release, "公開年" %>
+        <%= f.text_area :release, class: "form-control", placeholder: "4桁の数字を入力してください" %>
+      </div>
 
-  <h4>時系列</h4>
-  <%= f.text_area :timeline %>
+      <div class="mb-3">
+        <%= f.label :timeline, "時系列" %>
+        <%= f.text_field :timeline, class: "form-control", placeholder: "1〜99の数字を入力してください" %>
+      </div>
 
-  <h4>タグ</h4>
-  <%= f.text_area :tag %>
+      <div class="mb-3">
+        <%= f.label :tag, "タグ" %>
+        <%= f.text_field :tag, class: "form-control" %>
+      </div>
 
-  <h4>画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
+      <div class="mb-3">
+        <%= f.label :image, "イメージ画像" %>
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
 
-  <%= f.submit '投稿' %>
-<% end %>
+      <div class="mb-3" id="star">
+        <%= f.label :rate, "評価" %>
+        <%= f.hidden_field :rate, id: :review_star, class: "form-control" %>
+        <div id="post_raty"></div>
+      </div>
+
+      <script>
+        $(document).on('turbolinks:load', function() {
+          let elem = document.querySelector('#post_raty');
+          if (elem == null) return;
+    
+          elem.innerHTML = ""
+          let opt = {  
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'post[rate]',
+          };
+          raty(elem, opt);
+        });
+      </script>
+
+      <div class="d-flex justify-content-end">
+        <%= f.submit "投稿", class: "btn btn-primary m-1 px-4" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
