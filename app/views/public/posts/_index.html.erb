@@ -10,6 +10,7 @@
       <th>いいね</th>
       <th>投稿者</th>
       <th>評価</th>
+      <th>感情分析</th>
     </tr>
   </thead>
   <tbody>
@@ -35,6 +36,7 @@
         <td>
           <div id="raty_<%= post.id %>"></div>
         </td>
+        <td><%= post.score %></td>
       </tr>
     <% end %>
   </tbody>
