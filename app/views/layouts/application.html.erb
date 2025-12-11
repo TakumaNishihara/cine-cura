@@ -28,6 +28,17 @@
 
     <%= render 'layouts/footer' %>
 
+    <script>
+      $(document).on('turbolinks:load', function() {
+        $('.menu-trigger').on('click', function(event) {
+          $(this).toggleClass('active');
+          $('#sp-menu').fadeToggle();
+          event.preventDefault();
+        });
+      });
+    </script>
+
+
     <script src="js/jquery.min.js"></script>
     <script src="js/script.js"></script>
   </body>

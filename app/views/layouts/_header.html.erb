@@ -4,64 +4,103 @@
 
       <% if admin_signed_in? %>
         <%= link_to "シネマキュレーター", admin_dashboards_path, class: "navbar-brand" %>
-
         <span class="navbar-text me-auto ms-5">
           管理者モードです
         </span>
-
-        <ul class="navbar-nav d-flex flex-row">
-            <li class="nav-item me-3">
-            <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item me-3">
-            <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
-            </li>
-        </ul>
+        
+        <!-- ★ PC用ナビ（管理者ログイン時） -->
+        <div class="header-nav-pc ms-auto">
+          <ul class="navbar-nav d-flex flex-row">
+              <li class="nav-item me-3">
+              <%= link_to "ユーザー一覧", admin_users_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item me-3">
+              <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
+              </li>
+          </ul>
+        </div>
 
       <% elsif user_signed_in? %>
 
+        <!-- ★ PC用ナビ（ユーザーログイン時） -->
         <%= link_to "シネマキュレーター", root_path, class: "navbar-brand" %>
         <span class="navbar-text me-auto ms-5">
             ようこそ <%= current_user.name %> さん
         </span>
 
+        <!--div class="header-nav-pc d-flex align-items-center ms-auto"-->
         <%= render 'searches/form' %>
-
-        <ul class="navbar-nav d-flex flex-row">
-          <li class="nav-item me-3">
-            <%= link_to "投稿フォーム", new_post_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item me-3">
-            <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item me-3">
-            <%= link_to "マイページ", mypage_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
-          </li>
-        </ul>
+        <div class="header-nav-pc ms-auto">
+          <ul class="navbar-nav d-flex flex-row">
+            <li class="nav-item me-3">
+              <%= link_to "投稿フォーム", new_post_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item me-3">
+              <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item me-3">
+              <%= link_to "マイページ", mypage_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
 
       <% else %>
         
+      <!-- ★ PC用ナビ（未ログイン時） -->
         <%= link_to "シネマキュレーター", root_path, class: "navbar-brand" %>
-        <ul class="navbar-nav d-flex ms-auto flex-row">
-                
-          <li class="nav-item me-3">
-            <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item me-3">
-            <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
-          </li>
-        </ul>
+
+        <div class="header-nav-pc ms-auto">
+          <ul class="navbar-nav d-flex flex-row">
+            <li class="nav-item me-3">
+              <%= link_to "投稿一覧", posts_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item me-3">
+              <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
 
       <% end %>
+
+      <!-- ★ ハンバーガーアイコン（全ログイン状態共通） -->
+      <div id="hm-icon">
+        <a href="#" class="menu-trigger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+
     </div>
   </nav>
+
+    <!-- ★ SPメニュー本体 -->
+  <div id="sp-menu">
+    <ul class="list-unstyled mt-5">
+      <% if admin_signed_in? %>
+        <li><%= link_to "ユーザー一覧", admin_users_path %></li>
+        <li><%= link_to "投稿一覧", posts_path %></li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+      <% elsif user_signed_in? %>
+        <li><%= link_to "投稿フォーム", new_post_path %></li>
+        <li><%= link_to "投稿一覧", posts_path %></li>
+        <li><%= link_to "マイページ", mypage_path %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "投稿一覧", posts_path %></li>
+        <li><%= link_to "新規登録", new_user_registration_path %></li>
+        <li><%= link_to "ログイン", new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+
 </header>
