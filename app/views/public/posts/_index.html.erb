@@ -40,6 +40,13 @@
       </tr>
     <% end %>
   </tbody>
+
+  <span id="back">
+    <a href="#">
+      <%= image_tag "arrow.png", alt: "トップへ戻る" %>
+    </a>
+  </span>
+
 </table>
 
 <script>
@@ -60,5 +67,10 @@
         raty(elem, opt);
       })();
     <% end %>
+
+    $('#back a').on('click', function(event) {
+      $('body, html').animate({ scrollTop: 0 }, 800);
+      event.preventDefault();
+    });
   });
 </script>
