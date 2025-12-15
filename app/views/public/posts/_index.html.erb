@@ -10,7 +10,8 @@
       <th>いいね</th>
       <th>投稿者</th>
       <th>評価</th>
-      <th>感情分析</th>
+      <th>投稿指数</th>
+      <th>投稿日時</th>
     </tr>
   </thead>
   <tbody>
@@ -36,7 +37,13 @@
         <td>
           <div id="raty_<%= post.id %>"></div>
         </td>
-        <td><%= post.score %></td>
+        <td>
+          <!--%= post.score %-->
+          <%= post.sentiment_emoji %>
+        </td>
+        <td>
+          <%= l(post.created_at, format: :short) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

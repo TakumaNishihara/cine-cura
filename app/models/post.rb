@@ -28,6 +28,16 @@ class Post < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
+  # 文章の感情の絵文字表現
+  def sentiment_emoji
+    return "-" if score.nil?
+
+    s = score.to_f
+    return "😄" if s >= 0.4
+    return "🤔" if s <= -0.4
+    "😐"
+  end
+
   # タイトル検索
   def self.search_for_title(content, method)
     if method == 'perfect'
