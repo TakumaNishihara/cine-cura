@@ -38,6 +38,11 @@ class Post < ApplicationRecord
     "😐"
   end
 
+  # 投稿日時
+  def formatted_created_at
+    created_at.strftime('%Y/%m/%d %H:%M')
+  end
+
   # タイトル検索
   def self.search_for_title(content, method)
     if method == 'perfect'
