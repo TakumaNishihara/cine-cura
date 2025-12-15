@@ -7,7 +7,7 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/0987e8650e.js" crossorigin="anonymous"></script>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -27,5 +27,19 @@
     </main>
 
     <%= render 'layouts/footer' %>
+
+    <script>
+      $(document).on('turbolinks:load', function() {
+        $('.menu-trigger').on('click', function(event) {
+          $(this).toggleClass('active');
+          $('#sp-menu').fadeToggle();
+          event.preventDefault();
+        });
+      });
+    </script>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

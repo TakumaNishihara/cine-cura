@@ -43,10 +43,11 @@
     <div class="d-none d-lg-block">
       <%= render "public/comments/form", post: @post, comment: @comment %>
     </div>
+    
   </div>
+
   <div class="col-12 col-lg-6">
     <h2>コメント一覧</h2>
-
     <%= render "public/comments/index", post: @post %>
     <div class="d-block d-lg-none">
       <%= render "public/comments/form", post: @post, comment: @comment %>

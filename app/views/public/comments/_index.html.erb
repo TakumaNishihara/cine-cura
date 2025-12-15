@@ -9,7 +9,13 @@
             <%= comment.user.name %>
           <% end %>
         </td>
-        <td><%= comment.body %></td>
+
+        <td>
+          <div class="speechBubble">
+            <%= comment.body %>
+          </div>
+        </td>
+
         <td>
           <% if comment.user == current_user || admin_signed_in? %>
             <%= link_to "コメント削除", post_comment_path(post, comment), method: :delete, class: "btn btn-danger pull-right" %>
