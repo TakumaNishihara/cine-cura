@@ -14,4 +14,8 @@
  *= require_self
  *= require comments
  */
- @import "header";
+@import "header";
+
+body {
+  background-color: #ebf4ff !important;
+}
