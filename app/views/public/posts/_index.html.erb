@@ -62,8 +62,13 @@
   <% posts.each do |post| %>
     <div class="mb-3 pb-3 border-bottom border-secondary">
       <!-- タイトル -->
-      <div class="p-2">
-        <%= link_to post.title, post, class: "fw-bold text-decoration-none" %>
+      <div class="p-2 d-flex gap-2 align-items-start">
+        <div class="flex-shrink-0">
+          <%= image_tag post.get_image(60, 60) %>
+        </div>
+        <div class="flex-grow-1">
+          <%= link_to post.title, post, class: "fw-bold text-decoration-none d-block" %>
+        </div>
       </div>
 
       <!-- 2列×2段（公開/タグ、投稿者/時系列） -->
@@ -81,10 +86,19 @@
         <div class="col-6 p-2 border-top border-end">
           投稿者：<%= link_to post.user.name, post.user, class: "text-decoration-none" %>
         </div>
-        <div class="col-6 p-2 border-top">
+        <div class="col-6 p-2 border-top border-end">
           時系列：<%= post.timeline %>
         </div>
+
+        <div class="col-6 p-2 border-top border-end">
+          コメント数：<%= post.comments.count %>
+        </div>
+        <div class="col-6 p-2 border-top border-end">
+          投稿日時：<%= post.formatted_created_at %>
+        </div>
+
       </div>
+
     </div>
   <% end %>
 </div>
